@@ -7,10 +7,10 @@ const saltRounds = 10;
 
 
 router.post('/',(req,res,next)=>{
-    let hash = bcrypt.hashSync(req.body.password, saltRounds);
     let new_user ={}
     new_user.username = req.body.username;
-    new_user.password = hash
+    new_user.password = req.body.password;
+    new_user.role = req.body.role;
     Users.create(new_user)
     .then((new_signup)=>{
         res.status(201).json({
