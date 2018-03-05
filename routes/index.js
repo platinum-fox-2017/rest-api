@@ -6,7 +6,7 @@ var router = express.Router();
 //   res.render('index', { title: 'Express' });
 // });
 router.get('/', function(req, res) {
-  res.send('REST API');
+  res.send('Simple REST API');
 });
 
 module.exports = router;
