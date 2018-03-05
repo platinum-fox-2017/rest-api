@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 const user = require('./routes/user.js')
 
 
-app.use('/users',user)
+app.use('/',user)
 
 
 app.listen(3000,()=>{
