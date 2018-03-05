@@ -1,5 +1,9 @@
 # rest-api
+
 REST API with MVC architecture
+Author: Gustaf Pahlevi
+
+[Heroku:](https://www.google.com)
 
 
 | Route           | HTTP      | Description                                                |
