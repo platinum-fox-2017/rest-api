@@ -144,6 +144,12 @@ module.exports = {
                     role: req.body.role || user.role
                 };
                 model.User.update(updatedValue, {where:{id: id}})
+                .then((user) => {
+                    res.status(200).json({
+                        user,
+                        message: "User Updated"
+                    })
+                })
             } else {
                 res.status(404).json({
                     message: "user not found"
