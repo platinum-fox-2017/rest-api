@@ -2,26 +2,58 @@ const models     = require('../models')
 const bcrypt     = require('bcrypt')
 const jwt        = require('jsonwebtoken')
 const saltRounds = 10;
+const Op         = require('sequelize').Op
 
 module.exports = {
     getUsers : (req,res) => {
-        models.User.findAll()
-        .then(users => {
-            if(users) {
-                res.status(200).json({
-                    message : 'get all user data success',
-                    users
-                })
-            } else {
-                res.status(404).json({
-                    message : 'users not found',
-                    users : []
-                })
-            }
-        })
-        .catch(err => {
-            res.send(err)
-        })
+        if (!req.query.name) {
+            models.User.findAll()
+            .then(users => {
+                if(users) {
+                    res.status(200).json({
+                        message : 'get all user data success',
+                        users
+                    })
+                } else {
+                    res.status(404).json({
+                        message : 'users not found',
+                        users : []
+                    })
+                }
+            })
+            .catch(err => {
+                res.send(err)
+            })
+        } else {
+            models.User.findAll({
+                where : {
+                    [Op.or] : [
+                        {
+                            firstName : {[Op.iLike] : '%'+req.query.name+'%'}
+                        },
+                        {
+                            lastName : {[Op.iLike] : '%'+req.query.name+'%'}
+                        }
+                    ]
+                }
+            })
+            .then(users => {
+                if(users) {
+                    res.status(200).json({
+                        message : 'get all user data success',
+                        users
+                    })
+                } else {
+                    res.status(404).json({
+                        message : 'users not found',
+                        users : []
+                    })
+                }
+            })
+            .catch(err => {
+                res.send(err)
+            })
+        }
     },
 
     getUsersById : (req,res) => {
