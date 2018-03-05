@@ -38,8 +38,9 @@ class Users_Controller {
     }
     static create_a_user(req,res,next){
         let new_user = {};
-        new_user.name = req.body.name,
-        new_user.address = req.body.address,
+        new_user.username = req.body.username,
+        new_user.password = req.body.password,
+        new_user.role = req.body.role,
         Users.create(new_user)
         .then(()=>{
             res.status(201).json({
@@ -78,8 +79,9 @@ class Users_Controller {
     static update_a_user(req,res,next){
         let id = Number(req.params.id);
         let updated_user ={};
-        updated_user.name = req.body.name;
-        updated_user.address = req.body.address;
+        updated_user.username = req.body.username;
+        updated_user.password = req.body.password;
+        updated_user.role = req.body.role;
         Users.update(updated_user,{
             where:{
                 id: id
