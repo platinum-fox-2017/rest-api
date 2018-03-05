@@ -3,7 +3,7 @@
 REST API with MVC architecture
 Author: Gustaf Pahlevi
 
-[Heroku:](https://www.google.com)
+Heroku: [Link](https://enigmatic-bayou-18004.herokuapp.com/)
 
 
 | Route           | HTTP      | Description                                                |
