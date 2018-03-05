@@ -3,7 +3,16 @@
 REST API with MVC architecture
 Author: Gustaf Pahlevi
 
+After clone this project, enter and run this command below at terminal:
+```
+node install
+sequelize db:migrate
+sequelize db:seed:all
+```
+
+
 Heroku: [Link](https://enigmatic-bayou-18004.herokuapp.com/)
+
 
 
 | Route           | HTTP      | Description                                                |
