@@ -8,7 +8,10 @@ const signUp = (req, res) => {
         password: req.body.password
     }
     User.create(input).then(() => {
-        res.send('User signup')
+        res.status(200).json({
+            message: 'User Signup',
+            data: input
+        })
     })
 }
 const signIn = (req, res) => {
@@ -16,13 +19,23 @@ const signIn = (req, res) => {
 }
 const getAllUsers = (req, res) => {
     User.findAll().then((datas) => {
-        res.send(datas)
+        res.status(200).json({
+            message: 'Show all user',
+            datas
+        })
     })
 }
 const getAUser = (req, res) => {
     const id = req.params.id
     User.findById(id).then((data) => {
-        res.send(data)
+        res.status(200).json({
+            message: 'User found',
+            data: data
+        })
+    }).catch(() => {
+        res.status(404).json({
+            message: 'User not found'
+        })
     })
 }
 const createUser = (req, res) => {
@@ -31,7 +44,10 @@ const createUser = (req, res) => {
         password: req.body.password
     }
     User.create(input).then(() => {
-        res.send('User signup')
+        res.status(200).json({
+            message: 'User Created',
+            input
+        })
     })
 }
 const deleteUser = (req, res) => {
@@ -41,7 +57,9 @@ const deleteUser = (req, res) => {
             id: id
         }
     }).then(() => {
-        res.send('User Deleted')
+        res.status(200).json({
+            message: 'User deleted',
+        })
     })
 }
 
@@ -56,7 +74,13 @@ const updateUser = (req, res) => {
             id: id
         }
     }).then(() => {
-        res.send('data updated')
+        res.status(200).json({
+            message: 'user updated',
+        })
+    }).catch((err) => {
+        res.status(404).json({
+            message: 'User not found'
+        })
     })
 }
 
