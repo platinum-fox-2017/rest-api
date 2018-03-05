@@ -7,8 +7,10 @@ module.exports = {
       try {
         const decoded = jwt.verify(token, process.env.SECRET );
         if( decoded ) {
-          if (decoded.role === 'admin' || (decode.role === 'user' && decoded.id === req.params.id)) {
+          if (decoded.role === 'admin' || (decoded.role === 'user' && decoded.id === +req.params.id)) {
             next()
+          // } else if(decoded.role === 'user' && decoded.id === +req.params.id){
+          //   next()
           } else {
             res.status(401).json({
               message : "tempatmu bukan disini 😈"
@@ -24,10 +26,10 @@ module.exports = {
           message : "tempatmu bukan disini 😈"
         })
       }
-    } else {
-      res.status(401).json({
-        message : "tempatmu bukan disini 😈"
-      })
+    // } else {
+    //   res.status(401).json({
+    //     message : "tempatmu bukan disini 😈"
+    //   })
     }
   }
 }
