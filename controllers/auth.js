@@ -9,8 +9,6 @@ module.exports = {
         if( decoded ) {
           if (decoded.role === 'admin' || (decoded.role === 'user' && decoded.id === +req.params.id)) {
             next()
-          // } else if(decoded.role === 'user' && decoded.id === +req.params.id){
-          //   next()
           } else {
             res.status(401).json({
               message : "tempatmu bukan disini 😈"
