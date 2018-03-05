@@ -29,6 +29,6 @@
     "sequelize-cli": "^4.0.0"
   },
   "engines":{
-    "node":"0.12.7"
+    "node":"9.3.0"
   }
 }
