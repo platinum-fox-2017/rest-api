@@ -1,11 +1,41 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt');
+const Users = require('../models').Users;
+const saltRounds = 10;
+
+
 
 router.post('/',(req,res,next)=>{
-    res.status(200).json({
-        message:"Sign in to get an access token based on credentials"
+    Users.findAll({
+        where:{
+            username: req.body.username
+        }
     })
+    .then((user)=>{
+        console.log(user);
+        if(user.length <1){
+            res.status(401).json({
+                message:"Authentication failed"
+            })
+        } else {
+            let check = bcrypt.compareSync(req.body.password, user[0].password);
+            if(check === true){
+                res.status(200).json({
+                    message:"Authentication successful"
+                })
+            } else {
+                res.status(401).json({
+                    message:"Authentication failed"
+                }) 
+            }
+        }
+    })
+    .catch((err)=>{
+        res.status(500).json({
+            err:err
+        })
+    });
 });
-
 
 module.exports = router;
