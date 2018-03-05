@@ -12,12 +12,12 @@ Route | HTTTP | Desctiption
 
 Route | HTTTP | Desctiption
 ----- | ----- | -----------
-/api/users | GET | Get all the users
-/api/users/:id | GET | Get single users
-/api/users | POST | Create a user
-/api/users/:id | DELETE | Delete a users
-/api/users/:id | PUT | Update a user with a new info
-/api/users/:id | PATCH | Update a user with a specific new info
+`[#f03c15]/api/users` | GET | Get all the users
+`[#f03c15]/api/users/:id` | GET | Get single users
+`[#f03c15]/api/users` | POST | Create a user
+`[#f03c15]/api/users/:id` | DELETE | Delete a users
+`[#f03c15]/api/users/:id` | PUT | Update a user with a new info
+`[#f03c15]/api/users/:id` | PATCH | Update a user with a specific new info
 
 ### List of filter  routes:
 
