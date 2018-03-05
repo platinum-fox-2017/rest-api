@@ -1,0 +1,13 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "restapi_auth",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "use_env_variable" : "DATABASE_URL",
+    "webhost": "https://enigmatic-bayou-18004.herokuapp.com/"
+  }
+}
