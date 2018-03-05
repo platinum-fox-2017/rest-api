@@ -6,7 +6,7 @@ const {auth} = require('../controllers/auth');
 
 /* GET users listing. */
 router.get('/users',auth, show);
-router.get('/users/:id', showOne);
+router.get('/users/:id',auth, showOne);
 router.post('/users',auth, addData);
 router.delete('/users/:id',auth, deleteData);
 router.put('/users/:id', editData);

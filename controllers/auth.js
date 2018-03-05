@@ -8,7 +8,7 @@ module.exports = {
       try {
         var decoded = jwt.verify(token, process.env.SECRET);
         if (decoded) {
-          if (decoded.role.toLowerCase() === 'admin') {
+          if (decoded.role.toLowerCase() === 'admin' || (decoded.id === +req.params.id && decoded.role.toLowerCase() === 'user')) {
             next()
           }
           else {
