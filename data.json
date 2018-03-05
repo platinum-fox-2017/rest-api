@@ -1,0 +1,61 @@
+{
+    "message": "User query success",
+    "users": [
+        {
+            "id": 1,
+            "username": "johnDoe",
+            "password": "123",
+            "role": null,
+            "createdAt": null,
+            "updatedAt": null
+        },
+        {
+            "id": 2,
+            "username": "johnSmith",
+            "password": "123",
+            "role": null,
+            "createdAt": null,
+            "updatedAt": null
+        },
+        {
+            "id": 3,
+            "username": "johnBlue",
+            "password": "123",
+            "role": null,
+            "createdAt": "2018-03-05T09:30:31.000Z",
+            "updatedAt": "2018-03-05T09:52:02.409Z"
+        },
+        {
+            "id": 5,
+            "username": "johnNgawur",
+            "password": "$2a$10$6M97gJZu1a4myAiw7ZUnw.hKIBIZZnhJW34vZNfC.JgJECFVEv0Q6",
+            "role": null,
+            "createdAt": "2018-03-05T10:13:47.514Z",
+            "updatedAt": "2018-03-05T10:13:47.514Z"
+        },
+        {
+            "id": 7,
+            "username": "johnEnak",
+            "password": "$2a$10$yRSbDMN8RMV6221Drjsygu3BlqntTZToJwJo42QpgyQ5EqCqnTeUm",
+            "role": null,
+            "createdAt": "2018-03-05T10:52:44.521Z",
+            "updatedAt": "2018-03-05T10:52:44.521Z"
+        },
+        {
+            "id": 8,
+            "username": "johnDek",
+            "password": "$2a$10$mdqG1rkusaJJIrAEHuF2We/nn1d/NBiDRQDPhftNwrDz3EW1lQfAq",
+            "role": "admin",
+            "createdAt": "2018-03-05T10:53:28.601Z",
+            "updatedAt": "2018-03-05T10:53:28.601Z"
+        },
+        {
+            "id": 6,
+            "username": "johnEdanTenan",
+            "password": "123",
+            "role": null,
+            "createdAt": "2018-03-05T10:52:03.041Z",
+            "updatedAt": "2018-03-05T11:03:39.395Z"
+        }
+    ]
+}

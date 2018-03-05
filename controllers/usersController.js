@@ -1,12 +1,14 @@
 const sequelize = require('sequelize')
 const Model = require('../models')
 var bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
 
 module.exports = {
 	signUp: (req, res) => {
 		let newUser = {
 			username: req.body.username,
-			password: bcrypt.hashSync(req.body.password)
+			password: bcrypt.hashSync(req.body.password),
+			role: "user"
 		}
 
 		Model.User.create(newUser)
@@ -24,10 +26,18 @@ module.exports = {
 		Model.User.findOne({where: {username: req.body.username}})
 		.then( data => {
 			if(data){
-				if(bcrypt.compareSync(req.body.password, data.password)) {
+				if(bcrypt.compareSync(req.body.password, data.password)) { 
+					var payload = {
+						id: data.id, 
+						username: data.username,
+						password: data.password,
+						role: data.role
+					}
+					var token = jwt.sign( payload, process.env.SECRET);
 					res.status(200).json ({
 						message: 'Sign in success',
-						users: data
+						users: data,
+						token
 					})
 				}	else {
 					res.status(403).json ({
@@ -59,7 +69,8 @@ module.exports = {
 	createUser: (req, res) => {
 		let newUser = {
 			username: req.body.username,
-			password: bcrypt.hashSync(req.body.password)
+			password: bcrypt.hashSync(req.body.password),
+			role: req.body.role
 		}
 
 		Model.User.create(newUser)
