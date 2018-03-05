@@ -5,7 +5,7 @@ const models = require('../models');
 function checkAuth (req,res,next) {
     token = req.headers.token;
     try {
-        jwt.verify(token, 'fadhilmch', (err,decoded) => {
+        jwt.verify(token, process.env.SECRET, (err,decoded) => {
             models.User.findById(decoded.id)
                 .then(user => {
                     if(user.isAdmin){

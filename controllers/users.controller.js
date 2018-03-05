@@ -8,6 +8,27 @@ module.exports = {
             name:req.body.name,
             Email: req.body.Email,
             Password: req.body.Password,
+            isAdmin: false,
+            createdAt: new Date(),
+            updatedAt: new Date()
+        }).then(data => {
+            res.status(201).json({
+                messages:`Succeed to create new user`,
+                user: data
+            })
+        }).catch((err)=>{
+            console.log(err);
+            res.status(404).json({
+                messages:'Database not found'
+            })
+        })
+    },
+
+    addUserAdmin : (req, res) => {
+        models.User.create({
+            name:req.body.name,
+            Email: req.body.Email,
+            Password: req.body.Password,
             isAdmin: req.body.isAdmin,
             createdAt: new Date(),
             updatedAt: new Date()
@@ -109,7 +130,7 @@ module.exports = {
         }).then(user => {
             if(user){
                 if(user.Password == hashPassword(req.body.Password)){
-                    let token = jwt.sign({id: user.id}, 'fadhilmch');
+                    let token = jwt.sign({id: user.id}, process.env.SECRET);
                     res.status(200).json({
                         message: "User succeed login",
                         token: token

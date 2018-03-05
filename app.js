@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hashPassword = require('./helpers/hashPassword');
+require('dotenv').config();
 
 var index = require('./routes/index');
 var api = require('./routes/api');
