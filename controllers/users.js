@@ -23,7 +23,8 @@ module.exports = {
     user.create({
       name      : req.body.name,
       email     : req.body.email,
-      password  : req.body.password
+      password  : req.body.password,
+      role      : req.body.role
     })
     .then(user => {
       res.status(200).json({
@@ -32,7 +33,10 @@ module.exports = {
       })
     })
     .catch(err => {
-      console.error(err)
+      // console.error(err)
+      res.status(403).json({
+        message: err.message
+      })
     })
   },
   updateUser: (req, res) => {
@@ -41,7 +45,8 @@ module.exports = {
     }, {
       $set: {
         name      : req.body.name,
-        password  : req.body.password
+        password  : req.body.password,
+        role      : req.body.role
       }
     })
     .then(user => {
