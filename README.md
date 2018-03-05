@@ -16,8 +16,7 @@ khusus unutk route authentication, bisa kita custom sendir.
 | Routes                | HTTP          |           Description       |
 | --------------------- | ------------- | --------------------------- |
 | /api/signup           | POST          | Sign up with new user info  |
-| /api/signin           | POST          | Sign in while get an access token
-                                          based ob credentials  |
+| /api/signin           | POST          | Sign in while get an access token based ob credentials  |
 | /api/users           | GET          | get all the users info(admin only) |
 | /api/users/:id           | GET          | get a single user info (admin and autheticated user) |
 | /api/users          | POST         | create a user (admin only) |
