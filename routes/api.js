@@ -9,6 +9,7 @@ router.post('/signin', postApiSignin);
 router.get('/users', middleware.isAdmin, getApiUsers);
 router.get('/users/:id',middleware.isAuthUser , getUser);
 router.post('/users', middleware.isAdmin, postUserAdmin);
+router.put('/users/:id', middleware.isAdminOrAuthUser, updateUser)
 router.delete('/users/:id', middleware.isAdminOrAuthUser, deleteApiUsers);
 
 module.exports = router;
