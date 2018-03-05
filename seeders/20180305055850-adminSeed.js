@@ -16,35 +16,35 @@ module.exports = {
       {
         status: 'admin',
         name: 'teddy',
-        password: 'pokemon',
+        password: '$2a$10$MDu2BPYKoUbbJS7rrh1J6eDiqXFaeos0EJbNAeqhSNh6EvXhg5NSe',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         status: 'admin',
         name: 'hacktiv',
-        password: 'bethebest',
+        password: '$2a$10$ATy9JB6biyANhC1qSYMyUuCQ747ijDjD0dA9HkmJkghgnmWO6Q1iq',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         status: 'user',
         name: 'user1',
-        password: '123456',
+        password: '$2a$10$8YQH9msYk12DJzl9qS6zru0Akxts./tB9FKOd0T8aCx2FKIyXoFxm',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         status: 'user',
         name: 'user2',
-        password: '123456',
+        password: '$2a$10$8YQH9msYk12DJzl9qS6zru0Akxts./tB9FKOd0T8aCx2FKIyXoFxm',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         status: 'user',
         name: 'user3',
-        password: '123456',
+        password: '$2a$10$8YQH9msYk12DJzl9qS6zru0Akxts./tB9FKOd0T8aCx2FKIyXoFxm',
         createdAt: new Date(),
         updatedAt: new Date()
       },

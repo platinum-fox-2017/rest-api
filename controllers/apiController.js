@@ -1,14 +1,16 @@
 const db = require('../models/index.js')
 const express = require('express')
+const jwt = require('jsonwebtoken');
 
 class Api {
 
   static signUp(req, res){
     // res.send('signUp page')
+
     db.User.create({
       status: 'user',
       name: req.body.name,
-      password: req.body.password,
+      password: req.body.name,
       createdAt: new Date(),
       updatedAt: new Date()
     }).then(newUser => {
@@ -31,8 +33,8 @@ class Api {
   }
 
   static signIn(req, res){
-    res.send('signIn page')
-
+    // res.send('signIn page')
+    
   }
 
   static getUsers(req, res){
@@ -129,8 +131,8 @@ class Api {
     db.User.findById(req.params.id).then(foundUser=>{
       if (foundUser) {
         foundUser.update({
-          name: req.params.name,
-          password: req.params.password,
+          name: req.body.name,
+          password: req.body.password,
           updatedAt: new Date()
         }).then(updatedUser=>{
           res.status(200).json({
