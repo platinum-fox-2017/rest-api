@@ -9,7 +9,7 @@ List of basic routes:
 
 **Route** | **HTTP** | **Descrition**
 ----------|----------|---------------
-```-/api/hello?name={name}```| GET | Print hello, {name} !
+/api/hello?name={name}| GET | Print hello, {name} !
 
 List of user routes:
 
@@ -39,7 +39,3 @@ npm run dev
 ```
 
 Access the website via http://localhost:3000 or API via http://localhost:3000/api
-
-
-
-
