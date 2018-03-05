@@ -18,7 +18,7 @@ module.exports = {
         password: '123',
         first_name: 'John',
         last_name: 'Doe',
-        phone: 0812345612,
+        phone: 812345612,
         user_level: 1,
         createdAt: new Date(),
         updatedAt: new Date()
