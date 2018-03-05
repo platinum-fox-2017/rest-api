@@ -8,7 +8,7 @@ Route | HTTTP | Desctiption
 ----- | ----- | -----------
 /api | GET | Print hellp, {name} !
 
-###List of user routes:
+### List of user routes:
 
 Route | HTTTP | Desctiption
 ----- | ----- | -----------
@@ -19,18 +19,18 @@ Route | HTTTP | Desctiption
 /api/users/:id | PUT | Update a user with a new info
 /api/users/:id | PATCH | Update a user with a specific new info
 
-###List of filter  routes:
+### List of filter  routes:
 
 Route | HTTTP | Desctiption
 ----- | ----- | -----------
 /api/users?name="{name}" | GET | Get {name} match in users
 /api/users?name={na} | GET | Get {na} like in users
 
-##Usage
-###With only npm:
+## Usage
+### With only npm:
 
-npm install
+`npm install
 npm start
-npm run dev
+npm run dev`
 
-Access the website via [http://localhost:3000] (http://localhost:3000) or API via [http://localhost:3000/api] (http://localhost:3000/api)
+Access the website via `http://localhost:3000` or API via `http://localhost:3000/api`.
