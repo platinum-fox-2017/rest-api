@@ -9,7 +9,7 @@ Release 0
 
 | Route                     | HTTP   |        Description                                               |
 | ------------------------- | ------ | ---------------------------------------------------------------- |
-| <span style="color:red">/api/signup</span>               | POST   | Sign up with new user info                                       |
+| <p style="color:red">/api/signup</p>               | POST   | Sign up with new user info                                       |
 | /api/signin               | POST   | Sign in while get an access token based on credentials           |
 | /api/users                | GET    | Get all the users info (admin only)                              |
 | /api/users/:id            | GET    | Get a single user info (admin and authenticated user)            |
