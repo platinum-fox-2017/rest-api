@@ -40,4 +40,4 @@ npm start
 npm run dev
 ```
 
-Access the website via `http://localhost:300 {color: red}` or API via `http://localhost:3000/api {color: red}`
+Access the website via `<span style="color:red">http://localhost:300</span>` or API via `<span style="color:red">http://localhost:3000/api</span>`
