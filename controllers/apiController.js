@@ -1,6 +1,7 @@
 const db = require('../models/index.js')
 const express = require('express')
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 class Api {
 
@@ -34,7 +35,45 @@ class Api {
 
   static signIn(req, res){
     // res.send('signIn page')
-    
+    // set token here
+    db.User.findOne({
+      where: {
+        name : req.body.name
+      }
+    }).then(foundUser => {
+      if (!foundUser) {
+        res.status(404).json({
+          message: 'user is not found'
+        })
+      } else {
+        const saltRounds = 10;
+        // var hash = bcrypt.hashSync(req.body.password, saltRounds);
+        if (!bcrypt.compareSync(req.body.password,foundUser.password)) {
+          res.status(401).json({
+            message: 'password is wrong'
+          })
+        } else {
+          // add token
+          let params = {
+            id: foundUser.id,
+            role: foundUser.status
+          }
+          let token = jwt.sign(params, 'SECRETKEY001')
+          console.log(token);
+          res.status(200).json({
+            message: 'login successful',
+            token: token,
+            user: foundUser.name
+          })
+        }
+      }
+    }).catch(err => {
+      res.status(500).json({
+        err: err.message
+      })
+    })
+
+
   }
 
   static getUsers(req, res){
