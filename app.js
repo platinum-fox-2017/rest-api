@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
+app.set('port',(process.env.PORT|| 3000));
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
@@ -16,4 +18,6 @@ app.use('/api/signin',routes_signin);
 app.use('/api/users',routes_users);
 
 
-app.listen(3000);
+app.listen(app.get('port'),function(){
+    console.log(`Node is running on port`,app.get('port'))
+});
