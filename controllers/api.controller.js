@@ -15,7 +15,16 @@ const signUp = (req, res) => {
     })
 }
 const signIn = (req, res) => {
-
+    User.findOne({
+        where: {
+            email: req.body.email,
+            password: req.body.password
+        }
+    }).then((data) => {
+        res.status(200).json(
+            data
+        )
+    })
 }
 const getAllUsers = (req, res) => {
     User.findAll().then((datas) => {
@@ -28,14 +37,16 @@ const getAllUsers = (req, res) => {
 const getAUser = (req, res) => {
     const id = req.params.id
     User.findById(id).then((data) => {
-        res.status(200).json({
-            message: 'User found',
-            data: data
-        })
-    }).catch(() => {
-        res.status(404).json({
-            message: 'User not found'
-        })
+        if (data !== null) {
+            res.status(200).json({
+                message: 'User found',
+                data: data
+            })
+        } else {
+            res.status(404).json({
+                message: 'User not found',
+            })
+        }
     })
 }
 const createUser = (req, res) => {
@@ -52,14 +63,22 @@ const createUser = (req, res) => {
 }
 const deleteUser = (req, res) => {
     const id = req.params.id
-    User.destroy({
-        where: {
-            id: id
+    User.findById(id).then((data) => {
+        if (data !== null) {
+            User.destroy({
+                where: {
+                    id: id
+                }
+            }).then(() => {
+                res.status(200).json({
+                    message: 'User deleted',
+                })
+            })
+        } else {
+            res.status(404).json({
+                message: 'User Not Found cant delete'
+            })
         }
-    }).then(() => {
-        res.status(200).json({
-            message: 'User deleted',
-        })
     })
 }
 
@@ -69,18 +88,23 @@ const updateUser = (req, res) => {
         email: req.body.email,
         password: req.body.password
     }
-    User.update(input, {
-        where: {
-            id: id
+
+    User.findById(id).then((data) => {
+        if (data !== null) {
+            User.update(input, {
+                where: {
+                    id: id
+                }
+            }).then(() => {
+                res.status(200).json({
+                    message: 'user updated',
+                })
+            })
+        } else {
+            res.status(400).json({
+                message: 'user not found'
+            })
         }
-    }).then(() => {
-        res.status(200).json({
-            message: 'user updated',
-        })
-    }).catch((err) => {
-        res.status(404).json({
-            message: 'User not found'
-        })
     })
 }
 
