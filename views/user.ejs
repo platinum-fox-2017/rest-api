@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>list user</title>
+  </head>
+  <body>
+    <table border='1'>
+      <tr>
+        <th>username</th>
+        <th>password</th>
+      </tr>
+
+      <% for(var i=0;i<data.length;i++){%>
+        <tr>
+          <td><%= data[i].username%></td>
+          <td><%= data[i].password%></td>
+        </tr>
+      <%}%>
+
+    </table>
+
+    <form class="" action="" method="post">
+      <table>
+        <tr>
+          <td>username</td>
+          <td> <input type="text" name="username" value=""> </td>
+        </tr>
+        <tr>
+          <td>password</td>
+          <td> <input type="text" name="password" value=""> </td>
+          <tr>
+        </tr>
+          <td></td>
+          <td> <input type="submit" name="" value="register"> </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
