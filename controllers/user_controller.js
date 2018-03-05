@@ -22,7 +22,7 @@ module.exports = {
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
-      role: 'user'
+      role: req.body.role
     }
     models.User.create(user)
       .then(user => {
@@ -32,7 +32,7 @@ module.exports = {
         })
       }).catch(err => {
         res.status(400).json({
-          message: err
+          message: err.message
         })
       })
   },
@@ -54,7 +54,7 @@ module.exports = {
         })
       }).catch(err => {
         res.status(400).json({
-          message: err
+          message: err.message
         })
       })
   },
@@ -69,7 +69,8 @@ module.exports = {
         token = jwt.sign({id: data.id, role: data.role}, process.env.SECRET)
         // console.log(token)
         res.status(201).json({
-          message: 'login success!'
+          message: 'login success!',
+          token
         })
       } else {
         res.status(404).json({
@@ -92,7 +93,7 @@ module.exports = {
         })
       }).catch(err => {
         res.status(404).json({
-          message: err
+          message: err.message
         })
       })
   },
@@ -106,7 +107,7 @@ module.exports = {
         })
       }).catch(err => {
         res.status(404).json({
-          message: err
+          message: err.message
         })
       })
   },
@@ -123,12 +124,12 @@ module.exports = {
             })
           }).catch(err => {
             res.status(404).json({
-              message: err
+              message: err.message
             })
           })
       }).catch(err => {
         res.status(404).json({
-          message: err
+          message: err.message
         })
       })
   },
@@ -144,12 +145,12 @@ module.exports = {
             })
           }).catch(err => {
             res.status(401).json({
-              message: err
+              message: err.message
             })
           })
       }).catch(err => {
         res.status(401).json({
-          message: err
+          message: err.message
         })
       })
   }
