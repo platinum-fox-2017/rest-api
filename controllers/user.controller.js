@@ -125,7 +125,7 @@ module.exports = {
         })
         .catch(err => {
             res.status(204).json({
-                message: "No Content",
+                message: "No Data",
                 data
             })
         })
