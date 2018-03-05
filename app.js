@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+require('dotenv').config();
+
 const routes_signup = require('./routes/signup');
 const routes_signin = require('./routes/signin');
 const routes_users = require('./routes/users');

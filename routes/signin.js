@@ -26,7 +26,7 @@ router.post('/',(req,res,next)=>{
                     id:user[0].id,
                     username:user[0].username,
                     role:user[0].role,
-                },'private_key',{
+                },process.env.secret,{
                     expiresIn:"1h"
                 })
                 res.status(200).json({

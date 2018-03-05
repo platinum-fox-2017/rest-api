@@ -4,8 +4,7 @@ class Check{
     static check_authentication(req,res,next){
         try {
             const token = req.headers.authorization;
-            const decoded = jwt.verify(token,'private_key');
-            // console.log(decoded)
+            const decoded = jwt.verify(token, process.env.secret);
             if(decoded.role === 'admin'){
                 next();
             } else if (decoded.id === Number(req.params.id)){
