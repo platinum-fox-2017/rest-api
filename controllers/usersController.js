@@ -1,7 +1,49 @@
-// const sequelize = require('sequelize')
+const sequelize = require('sequelize')
 const Model = require('../models')
+var bcrypt = require('bcryptjs');
 
 module.exports = {
+	signUp: (req, res) => {
+		let newUser = {
+			username: req.body.username,
+			password: bcrypt.hashSync(req.body.password)
+		}
+
+		Model.User.create(newUser)
+		.then( data => {
+			res.status(200).json ({
+				message: 'Sign Up success',
+				users: data
+			})
+		})
+		.catch( err => {
+			console.log(err);
+		})
+	},
+	signIn: (req, res) => {
+		Model.User.findOne({where: {username: req.body.username}})
+		.then( data => {
+			if(data){
+				if(bcrypt.compareSync(req.body.password, data.password)) {
+					res.status(200).json ({
+						message: 'Sign in success',
+						users: data
+					})
+				}	else {
+					res.status(403).json ({
+						message: 'Your password is not correct',
+					})
+				}
+			}	else {
+				res.status(403).json ({
+					message: 'Username is not registered',
+				})
+			}
+		})
+		.catch( err => {
+			console.log(err);
+		})
+	},
 	getUsers: (req, res) => {
 		Model.User.findAll()
 		.then( data => {
@@ -17,7 +59,7 @@ module.exports = {
 	createUser: (req, res) => {
 		let newUser = {
 			username: req.body.username,
-			password: req.body.password
+			password: bcrypt.hashSync(req.body.password)
 		}
 
 		Model.User.create(newUser)
