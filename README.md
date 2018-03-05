@@ -1,6 +1,12 @@
 # rest-api
 REST API with MVC architecture
 
-Route       | HTTP | Description
------------ | ---- | -----------
-/api/signup | POST | Sign up with new user info
+Route           | HTTP   | Description
+-----------     | ----   | -----------
+/api/signup     | POST   | Sign up with new user info
+/api/signin     | POST   | Sign in while get an access token based on credentials
+/api/users      | GET    | Get all the users info (admin only)
+/api/users/:id  | GET    | Get s single user info (admin and authenticaticated user)
+/api/users      | POST   | Create a user (admin only)
+/api/users/:id  | DELETE | Delete a user (admin only)
+/api/users/:id  | PUT    | Update a user with a new info (admin and authenticated user)
