@@ -5,5 +5,13 @@
     "database": "rest_api_mvc",
     "host": "127.0.0.1",
     "dialect": "postgres"
-  }
+  },
+  "production": {
+    "username": "zsfrvddocclici",
+    "password": "7a51da5c1f8207080ca0761a4a4b4836ace9004c7fbdfbacffa74767ba560b77",
+    "database": "ddf5vl1m2a6qkt",
+    "host": "ec2-50-17-206-214.compute-1.amazonaws.com",
+    "port": "5432",
+    "dialect": "postgres"
+  },
 }
