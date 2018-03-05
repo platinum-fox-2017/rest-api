@@ -29,6 +29,7 @@ module.exports = {
     postApiSignin: (req, res) => {
         let inputedEmail = req.body.email;
         let inputedPassword = req.body.password;
+        console.log(inputedEmail, inputedPassword)
         model.User.findOne({
             where: {email:inputedEmail}
         })
