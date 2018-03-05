@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     role: DataTypes.STRING
   }, {
     hooks: {
-      beforeCreate: (user, options) => {
+      beforeValidate: (user, options) => {
         user.password = bcrypt.hashSync(user.password, saltRounds)
       }
     }

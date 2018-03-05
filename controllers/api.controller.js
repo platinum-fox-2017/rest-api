@@ -16,7 +16,10 @@ module.exports = {
         };
         model.User.create(newUser)
         .then(() => {
-            res.status(201).redirect('/api/users');
+            res.status(200).json({
+                user,
+                message: "User successfully created"
+            })
         })
         .catch((err) => {
             res.status(404).send(err);
@@ -36,7 +39,10 @@ module.exports = {
                     const token = jwt.sign({id: user.id, role: user.role}, process.env.SECRET)
                     console.log(token)
                     // headers.token = token;
-                    res.status(200).redirect(`/api/users/${user.id}`)
+                    res.status(200).json({
+                        user,
+                        message: "Signed In"
+                    })
                 }
                 else {
                     res.status(401).json({
@@ -73,7 +79,9 @@ module.exports = {
             if(user) {
                 res.status(200).send(user)
             } else {
-                res.status(404).redirect('/api/users')
+                res.status(404).json({
+                    message: "user not found"
+                })
             }
         })
         .catch((err) => {
@@ -91,8 +99,11 @@ module.exports = {
             role: req.body.role
         };
         model.User.create(newUser)
-        .then(() => {
-            res.status(201).redirect('/api/users');
+        .then((user) => {
+            res.status(200).json({
+                user,
+                message: "User successfully created"
+            })
         })
         .catch((err) => {
             res.status(404).send(err);
