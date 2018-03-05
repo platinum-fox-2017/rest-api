@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('User', {
-    name: {
+    username: {
      type: DataTypes.STRING,
      validate: {
        cannotBeNull(value,next){
@@ -25,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       }
+    },
+    role: {
+      type: DataTypes.STRING
     } 
   }, {
     classMethods: {
