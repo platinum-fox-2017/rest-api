@@ -3,7 +3,8 @@ REST API with MVC architecture
 
 # REST API
 List of User routes:
-| Route        | HTTP           | Description  |
+
+| Route         | HTTP          | Description  |
 | ------------- |:-------------:| -----:|
 | /api/signup | POST | Sign up with new user info |
 | /api/signin   | POST | Sign in while get an access token based on credentials|
