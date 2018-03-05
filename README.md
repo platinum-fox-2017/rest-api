@@ -1,11 +1,15 @@
 # rest-api
 REST API with MVC architecture
 
-
 Morning Releases (Part 1)
+
+Release 0
+1. sudo npm install express-generator
+2. express . 
+
 | Route                     | HTTP   |        Description                                               |
 | ------------------------- | ------ | ---------------------------------------------------------------- |
-| <font color="red">/api/signup </font>              | POST   | Sign up with new user info                                       |
+| <span style="color:red">/api/signup</span>               | POST   | Sign up with new user info                                       |
 | /api/signin               | POST   | Sign in while get an access token based on credentials           |
 | /api/users                | GET    | Get all the users info (admin only)                              |
 | /api/users/:id            | GET    | Get a single user info (admin and authenticated user)            |
