@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const Users = require('../models').Users;
 const saltRounds = 10;
+const jwt = require('jsonwebtoken');
 
 
 
@@ -21,8 +22,16 @@ router.post('/',(req,res,next)=>{
         } else {
             let check = bcrypt.compareSync(req.body.password, user[0].password);
             if(check === true){
+                let token = jwt.sign({
+                    id:user[0].id,
+                    username:user[0].username,
+                    role:user[0].role,
+                },'private_key',{
+                    expiresIn:"1h"
+                })
                 res.status(200).json({
-                    message:"Authentication successful"
+                    message:"Authentication successful",
+                    token:token
                 })
             } else {
                 res.status(401).json({
