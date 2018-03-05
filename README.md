@@ -12,7 +12,7 @@ Route | HTTTP | Desctiption
 
 Route | HTTTP | Desctiption
 ----- | ----- | -----------
-[#f03c15]`/api/users` | GET | Get all the users
+`/api/users` | GET | Get all the users
 `/api/users/:id` | GET | Get single users
 `/api/users` | POST | Create a user
 `/api/users/:id` | DELETE | Delete a users
