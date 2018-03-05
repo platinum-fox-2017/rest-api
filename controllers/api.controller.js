@@ -35,6 +35,7 @@ module.exports = {
                 if(status) {
                     const token = jwt.sign({id: user.id, role: user.role}, process.env.SECRET)
                     console.log(token)
+                    // headers.token = token;
                     res.status(200).redirect(`/api/users/${user.id}`)
                 }
                 else {
@@ -80,8 +81,67 @@ module.exports = {
         })
     },
 
+    postUserAdmin: (req, res) => {
+        let newUser = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            gender: req.body.gender,
+            password: req.body.password,
+            role: req.body.role
+        };
+        model.User.create(newUser)
+        .then(() => {
+            res.status(201).redirect('/api/users');
+        })
+        .catch((err) => {
+            res.status(404).send(err);
+        }) 
+    },
+
     deleteApiUsers: (req, res) => {
         let id = req.params.id;
-        res.send(id)
+        model.User.findById(id)
+        .then((user) => {
+            user.destroy()
+            .then(() => {
+                if(user) {
+                    res.status(200).json({
+                        message: "user deleted"
+                    })
+                } else {
+                    res.status(404).json({
+                        message: "user not found"
+                    })
+                }
+            })
+        })
+    },
+
+    updateUser: (req, res) => {
+        let id = req.params.id;
+        model.User.findById(id)
+        .then((user) => {
+            if(user) {
+                let updatedValue = {
+                    firstName: req.body.firstName || user.firstName,
+                    lastName: req.body.lastName || user.lastName,
+                    email: req.body.email || user.email,
+                    password: req.body.password || user.password,
+                    gender: req.body.gender || user.gender,
+                    role: req.body.role || user.role
+                };
+                model.User.update(updatedValue, {where:{id: id}})
+            } else {
+                res.status(404).json({
+                    message: "user not found"
+                })
+            }
+        })
+        .catch((err) => {
+            res.status(401).json({
+                message: err,
+            })
+        })
     }
 }
