@@ -1,44 +1,37 @@
-# rest-api
-REST API with MVC architecture
+Demo app with basic REST API.
 
-### AGRHA REST-api
+(part 1)
 
-Demo App with basic REST API.
+buat skeleton aplikasi dengan cara menjalankan perintah berikut di direktori 
+project kamu:
+```
 
-### REST-api
+    $ express .
+    $ npm install
 
-List of basic routes:
+```
+Defisinikan beberapa route API yang akan kita gunakan seperti pola berikut ,
+khusus unutk route authentication, bisa kita custom sendir.
 
+| Routes                | HTTP          |           Description       |
+| --------------------- | ------------- | --------------------------- |
+| /api/signup           | POST          | Sign up with new user info  |
+| /api/signin           | POST          | Sign in while get an access token
+                                          based ob credentials  |
+| /api/users           | GET          | get all the users info(admin only) |
+| /api/users/:id           | GET          | get a single user info (admin and autheticated user) |
+| /api/users          | POST         | create a user (admin only) |
+| /api/users/:id          | DELETE         | Delete a user (admin only) |
+| /api/users/:id          | PUT         | Update a user with new info (admin and autheticated user) |
 
-| Routes                | HTTP          | Description          |
-| ---------------------:|:-------------:| --------------------:|
-| /api/hello?name={name}| GET           | Print hello,{name}!  |
+STEP 1 : Membuat model CRUD
+buatlah file-file model yang diperlukan untuk melakukan interaksi CRUD ke dalam database.
+Gunakan sequelize sebagai ORM 
 
-List of user routes:
+STEP 2 : Controller CRUD
+Buatlah direktori controller didalam aplikasi express. susunlah file-file controller yang diperlukan
+untuk mengakses model-model terkait
 
-| Routes                | HTTP          | Description                             |
-| ---------------------:|:-------------:| ---------------------------------------:|
-| /api/users            | GET           |    Get all the users                    |
-| /api/users/:id        | GET           |    Get a single user                    |
-| /api/users/           | POST          |    Create a user                        |
-| /api/users/:id        | DELETE        |    Delete a user                        |
-| /api/users/:id        | PUT           |    Update a user with new info          |
-| /api/users/:id        | PATCH         |    Update a user with specific new info |
+STEP 3 : Routing 
+lakukan konfigurasi di rektori routes untuk merilis semua URL yang telah di buat  
 
-List of filter routes:
-
-| Routes                   | HTTP          | Description                             |
-| ------------------------:|:-------------:| ---------------------------------------:|
-| /api/users?name="{name}" | GET           |    Get {name} match in users            |
-| /api/users/:id           | GET           |    Get {na} like in users               |
-
-
-Usage
-
-With only npm:
-
-npm install
-npm start
-npm run dev
-
-access the website via http://localhost:3000 or API via http://localhost:3000/api
