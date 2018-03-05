@@ -18,17 +18,20 @@ basic routes for this project:
 
 # Usage
 
-setting up
+Setting up
 ```
 npm install
 sequelize db:create
 sequelize db:migrate
 sequelize db:seed:all
-
 ```
 
-starting with npm
+Starting with npm
 ```
 npm start
-
 ```
+or
+```
+npm run dev
+```
+Access from localhost:3000/api
