@@ -6,7 +6,7 @@ class Auth {
   static authentication(req, res, next){
     // check if token exist
     try {
-      let tokenDecoded = jwt.verify(req.headers.token, 'SECRETKEY001')
+      let tokenDecoded = jwt.verify(req.headers.token, process.env.SECRET)
       console.log(tokenDecoded);
       req.headers.role = tokenDecoded.role;
       req.headers.id   = tokenDecoded.id;

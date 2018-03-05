@@ -34,4 +34,4 @@ or
 ```
 npm run dev
 ```
-Access from localhost:3000/api
+Access from localhost:3000/api with postman/insomnia

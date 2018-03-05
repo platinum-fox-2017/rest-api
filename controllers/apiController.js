@@ -58,7 +58,7 @@ class Api {
             id: foundUser.id,
             role: foundUser.status
           }
-          let token = jwt.sign(params, 'SECRETKEY001')
+          let token = jwt.sign(params, process.env.SECRET)
           console.log(token);
           res.status(200).json({
             message: 'login successful',
