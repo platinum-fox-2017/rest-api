@@ -13,8 +13,17 @@ module.exports = {
       });
     }
   },
-  isAuthorized: (req,res,next) => {
-    if (req.user.role == 'admin') {
+  isAuthorizedAdmin: (req,res,next) => {
+    if (req.user.role == 'admin' ) {
+      next();
+    } else {
+      res.status(401).json({
+        message: 'User Not Authorized'
+      });
+    }
+  },
+  isAuthorizedAdminorMember: (req,res,next) => {
+    if (req.user.role == 'admin' || req.params.id == req.user.id) {
       next();
     } else {
       res.status(401).json({
