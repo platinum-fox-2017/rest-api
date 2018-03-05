@@ -24,13 +24,16 @@ khusus unutk route authentication, bisa kita custom sendir.
 | /api/users/:id          | PUT         | Update a user with new info (admin and autheticated user) |
 
 STEP 1 : Membuat model CRUD
+
 buatlah file-file model yang diperlukan untuk melakukan interaksi CRUD ke dalam database.
 Gunakan sequelize sebagai ORM 
 
 STEP 2 : Controller CRUD
+
 Buatlah direktori controller didalam aplikasi express. susunlah file-file controller yang diperlukan
 untuk mengakses model-model terkait
 
 STEP 3 : Routing 
+
 lakukan konfigurasi di rektori routes untuk merilis semua URL yang telah di buat  
 
