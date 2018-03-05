@@ -9,13 +9,18 @@ const {
     updateUser
 } = require('../controllers/api.controller.js')
 
+const {
+    authAdmin,
+    authAdminAndUser
+} = require('../controllers/auth.controller')
+
 router.post('/signup', signUp)
 router.post('/signin', signIn)
-router.get('/users', getAllUsers)
-router.get('/users/:id', getAUser)
-router.post('/users', createUser)
-router.delete('/users/:id', deleteUser)
-router.put('/users/:id', updateUser)
+router.get('/users', authAdmin, getAllUsers)
+router.get('/users/:id', authAdminAndUser, getAUser)
+router.post('/users', authAdmin, createUser)
+router.delete('/users/:id', authAdmin, deleteUser)
+router.put('/users/:id', authAdminAndUser, updateUser)
 
 
 

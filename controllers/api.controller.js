@@ -2,11 +2,20 @@ const {
     User
 } = require('../models')
 
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const saltRounds = 10;
+
 const signUp = (req, res) => {
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hash = bcrypt.hashSync(req.body.password, salt);
+
     const input = {
         email: req.body.email,
-        password: req.body.password
+        password: hash,
+        role: 'user'
     }
+
     User.create(input).then(() => {
         res.status(200).json({
             message: 'User Signup',
@@ -14,18 +23,29 @@ const signUp = (req, res) => {
         })
     })
 }
+
+
 const signIn = (req, res) => {
     User.findOne({
         where: {
-            email: req.body.email,
-            password: req.body.password
+            email: req.body.email
         }
     }).then((data) => {
-        res.status(200).json(
-            data
-        )
+        let compare = bcrypt.compareSync(req.body.password, data.password)
+        if (compare === true) {
+            const token = jwt.sign({
+                id: data.id,
+                role: data.role
+            }, 'shhhhh');
+            res.status(200).json({
+                token
+            })
+        } else {
+            res.send('salah')
+        }
     })
 }
+
 const getAllUsers = (req, res) => {
     User.findAll().then((datas) => {
         res.status(200).json({
@@ -34,6 +54,8 @@ const getAllUsers = (req, res) => {
         })
     })
 }
+
+
 const getAUser = (req, res) => {
     const id = req.params.id
     User.findById(id).then((data) => {
