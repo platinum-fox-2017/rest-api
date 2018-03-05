@@ -5,7 +5,7 @@ REST API with MVC architecture
 
 Route | HTTP | Description
 ---------------------- | ----- | ----------------------
-![#f03c15](`/api/hello?name={name}`) |  GET  | Print hello, `![#f03c15]({name})` !
+`<span style="color:orange;">/api/hello?name={name}<span>` |  GET  | Print hello, `![#f03c15]({name})` !
 
 ### List of user routes:
 
