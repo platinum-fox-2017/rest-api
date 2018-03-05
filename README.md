@@ -22,10 +22,5 @@ route | HTTP | Description
 `/api/users?id="{id}"` | GET | Get {id} match in users
 
 ### Usage
-With only npm:
-```
-npm install
-npm start
-npm run dev
-```
-Access the website via `http://localhost:3000` or API via `http://localhost:3000/api`.
+
+Access the website via `https://afternoon-sea-60034.herokuapp.com/`.
