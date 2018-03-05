@@ -6,7 +6,8 @@ module.exports = {
         if(token){
             try{
                 let decoded = jwt.verify(token, process.env.SECRET);
-                if(decoded.role === 'admin'|| (decode.role === 'user' && decode.id === req.params.id) ){
+                console.log(decoded)
+                if(decoded.role === 'admin'|| (decoded.role === 'user' && decoded.id === Number(req.params.id)) ){
                     next()
                 }else{
                     res.status(404).json({
@@ -18,7 +19,6 @@ module.exports = {
                     message : 'not authorize'
                 })
             }
-
         }else{
             res.status(404).json({
                 message : 'need token , login first' 

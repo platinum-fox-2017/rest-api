@@ -12,12 +12,14 @@ module.exports = {
         })
     },
     createUser:(req,res)=>{
+        let salt = bcrypt.genSaltSync(saltRounds);
+        let hash = bcrypt.hashSync(req.body.password, salt);
        let obj = {
            username : req.body.username,
-           password : req.body.password,
+           password : hash,
            createdAt: new Date(),
            updatedAt: new Date(),
-           role: req.body.role
+           role: 'admin'
        }
         user.create(obj).then(data=>{
             res.status(200).json({
@@ -64,11 +66,12 @@ module.exports = {
         let obj = {
             username : req.body.username,
             password : hash,
-            role : req.body.role
+            role : 'user'
         }
         user.create(obj).then(data=>{
             res.status(200).json({
-                message : 'sign up success'
+                message : 'sign up success',
+                data:data
             })
         })
     },
@@ -77,7 +80,7 @@ module.exports = {
             if(data) {
                 let check = bcrypt.compareSync(req.body.password, data.password)
                 if(check){
-                    let token = jwt.sign({id:data.id,username:data.username}, process.env.SECRET)
+                    let token = jwt.sign({id:data.id,username:data.username,role:data.role}, process.env.SECRET)
                     res.status(200).json({
                         message : 'login success',
                         token: token
