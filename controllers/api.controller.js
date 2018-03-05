@@ -17,13 +17,12 @@ const signUp = (req, res) => {
     }
 
     User.create(input).then(() => {
-        res.status(200).json({
+        res.status(201).json({
             message: 'User Signup',
             data: input
         })
     })
 }
-
 
 const signIn = (req, res) => {
     User.findOne({
@@ -36,12 +35,14 @@ const signIn = (req, res) => {
             const token = jwt.sign({
                 id: data.id,
                 role: data.role
-            }, 'shhhhh');
+            }, process.env.SECRETKEY);
             res.status(200).json({
                 token
             })
         } else {
-            res.send('salah')
+            res.status(400).json({
+                message: 'Password is wrong'
+            })
         }
     })
 }
@@ -77,7 +78,7 @@ const createUser = (req, res) => {
         password: req.body.password
     }
     User.create(input).then(() => {
-        res.status(200).json({
+        res.status(201).json({
             message: 'User Created',
             input
         })
@@ -106,9 +107,14 @@ const deleteUser = (req, res) => {
 
 const updateUser = (req, res) => {
     const id = req.params.id
+
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hash = bcrypt.hashSync(req.body.password, salt);
+
     const input = {
         email: req.body.email,
-        password: req.body.password
+        password: hash,
+        role: req.body.role
     }
 
     User.findById(id).then((data) => {
@@ -123,7 +129,7 @@ const updateUser = (req, res) => {
                 })
             })
         } else {
-            res.status(400).json({
+            res.status(404).json({
                 message: 'user not found'
             })
         }

@@ -6,7 +6,7 @@ const {
 const authAdmin = (req, res, next) => {
     const token = req.headers.token
     if (token) {
-        jwt.verify(token, 'shhhhh', function (err, decoded) {
+        jwt.verify(token, process.env.SECRETKEY, function (err, decoded) {
             if (err) {
                 return res.json({
                     success: false,
@@ -30,10 +30,10 @@ const authAdmin = (req, res, next) => {
     }
 }
 
-const authAdminAndUser = (req, res) => {
+const authAdminAndUser = (req, res, next) => {
     const token = req.headers.token
     if (token) {
-        jwt.verify(token, 'shhhhh', function (err, decoded) {
+        jwt.verify(token, process.env.SECRETKEY, function (err, decoded) {
             if (err) {
                 return res.json({
                     success: false,
