@@ -1,4 +1,8 @@
-const {User} = require('../models')
+const {User} = require('../models');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const salt = bcrypt.genSaltSync(saltRounds);
+const jwt = require('jsonwebtoken');
 
 module.exports = {
     getUsers: (req, res) => {
@@ -10,14 +14,20 @@ module.exports = {
         })
     },
     createUser: (req, res) => {
+        const hash = bcrypt.hashSync(req.body.password, salt);
         User.create({
             username: req.body.username,
             email: req.body.email,
-            password: req.body.password
+            password: hash,
+            role: 'admin'
         }).then(user => {
-            res.status(200).json({
-                message: 'Created new user',
+            res.status(201).json({
+                message: 'New user created',
                 user
+            })
+        }).catch(error => {
+            res.status(401).json({
+                error
             })
         })
     },
@@ -68,6 +78,45 @@ module.exports = {
                 res.staus(404).json({
                     message: 'User not found'
                 })
+            }
+        })
+    },
+    signUp: (req, res) => {
+        const hash = bcrypt.hashSync(req.body.password, salt);
+        User.create({
+            username: req.body.username,
+            email: req.body.email,
+            password: hash,
+            role: 'user'
+        }).then(user => {
+            res.status(201).json({
+                message: 'New user created',
+                user
+            })
+        }).catch(error => {
+            res.status(401).json({
+                error
+            })
+        })
+    },
+    signIn: (req, res) => {
+        User.findOne({
+            where : {username : req.body.username}
+        }).then(user => {
+            if(user){
+                let compare = bcrypt.compareSync(req.body.password, user.password)
+                if(compare){                    
+                    const token = jwt.sign({
+                        id: user.id,
+                        role: user.role
+                    }, process.env.SECRET);
+                    res.status(200).json({
+                        message: 'Login successful',
+                        token
+                    })
+                } else {
+                    res.send('password salah')
+                }
             }
         })
     }
