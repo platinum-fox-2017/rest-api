@@ -67,7 +67,7 @@ module.exports = {
       let token
       if(match) {
         token = jwt.sign({id: data.id, role: data.role}, process.env.SECRET)
-        console.log(token)
+        // console.log(token)
         res.status(201).json({
           message: 'login success!'
         })

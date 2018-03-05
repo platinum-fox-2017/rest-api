@@ -67,6 +67,9 @@ module.exports = (sequelize, DataTypes) => {
         let saltRounds = 10
         let hash = bcrypt.hashSync(instance.dataValues.password, saltRounds);
         instance.dataValues.password = hash
+        if(instance._previousDataValues.role == 'user') {
+          instance.dataValues.role = 'user'
+        }
       }
     }
   });

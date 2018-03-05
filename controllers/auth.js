@@ -5,7 +5,7 @@ module.exports = {
     let token = req.headers.token
     try {
       let decoded = jwt.verify(token, process.env.SECRET)
-      console.log(decoded)
+      // console.log(decoded)
       if(decoded.role == 'admin') {
         next()
       } else { 
@@ -23,7 +23,7 @@ module.exports = {
     let token = req.headers.token
     try {
       let decoded = jwt.verify(token, process.env.SECRET)
-      console.log(decoded)
+      // console.log(decoded)
       if(decoded.role == 'admin') {
         next()
       } else if(decoded.role == 'user') {
