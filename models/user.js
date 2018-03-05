@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     Role: DataTypes.STRING
   }, {
     hooks: {
-      beforeCreate: (instance) => {
+      beforeValidate: (instance) => {
         instance.Password = helper.hasher(instance.Password)
       },
     }

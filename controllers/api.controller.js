@@ -113,21 +113,43 @@ module.exports = {
             where: {id: req.params.id}
         })
         .then( data => {
-            data.update({
-                FirstName: req.body.FirstName,
-                LastName: req.body.LastName,
-                DateOfBirth: req.body.DateOfBirth,
-                Email: req.body.Email,
-                Username: req.body.Username,
-                Password: req.body.Password
-            })
-            .then(result => {
-                console.log(result)
-                res.status(200).json({
-                    message: "record updated",
-                    data: data
+            if (data.Role !== 'admin'){
+                // console.log('=========', req.body)
+                data.update({
+                    FirstName: req.body.FirstName,
+                    LastName: req.body.LastName,
+                    DateOfBirth: req.body.DateOfBirth,
+                    Email: req.body.Email,
+                    Username: req.body.Username,
+                    Password: req.body.Password,
+                    Role: 'guest'
                 })
-            })
+                .then(result => {
+                    console.log(result)
+                    res.status(200).json({
+                        message: "record updated",
+                        data: data
+                    })
+                })
+            } else {
+                // console.log('-------', req.body)
+                data.update({
+                    FirstName: req.body.FirstName,
+                    LastName: req.body.LastName,
+                    DateOfBirth: req.body.DateOfBirth,
+                    Email: req.body.Email,
+                    Username: req.body.Username,
+                    Password: req.body.Password,
+                    Role: req.body.Role
+                })
+                .then(result => {
+                    console.log(result)
+                    res.status(200).json({
+                        message: "record updated",
+                        data: data
+                    })
+                })
+            }
         })
     }
 }
