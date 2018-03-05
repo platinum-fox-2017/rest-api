@@ -19,7 +19,7 @@ module.exports = {
         first_name: 'John',
         last_name: 'Doe',
         phone: 0812345612,
-        user_level: 0812345612,
+        user_level: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       }
