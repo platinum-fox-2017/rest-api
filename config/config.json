@@ -14,10 +14,7 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "Rest_api",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "use_env_variable": "DATABASE_URL",
+    "webhost": "https://desolate-brook-71327.herokuapp.com/"
   }
 }
