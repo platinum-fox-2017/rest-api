@@ -11,7 +11,7 @@ List of user routes :
 
 |Route               | HTTP     | Description                         |
 |--------------------|:--------:|:------------------------------------|
-|api/users           | GET      | Get all the users                   |
+|`api/users`         | GET      | Get all the users                   |
 |api/users/:id       | GET      | Get a single user                   |
 |api/users           | POST     | Create a user                       |
 |api/users/:id       | DELETE   | Delete a user                       |
@@ -28,8 +28,10 @@ List of filter routes :
 ## Usage
 with only npm:
 
-  ###### npm install
-  ###### npm start
-  ###### npm run dev
+```
+npm install
+npm start
+npm run dev
+```
 
 Access the webiste via http://localhost:3000 or API via http://localhost:3000/api .
