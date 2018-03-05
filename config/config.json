@@ -1,0 +1,20 @@
+{
+  "development": {
+    "username": "werkbau",
+    "password": "pokemon",
+    "database": "Rest_api",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "Rest_api",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL",
+    "webhost": "https://desolate-brook-71327.herokuapp.com/"
+  }
+}
