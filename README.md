@@ -1,8 +1,8 @@
 # My App Name
-REST API with MVC architecture
+Demo app with basic REST API.
 
 # REST API
-list of basic routers:
+List of basic routers:
 
 | Route                  | HTTP           | Description          |
 | ---------------------- |:--------------:| --------------------:|
@@ -19,7 +19,7 @@ list of user routes:
 | /api/users/:id   | PUT      | Update a user with new info           |
 | /api/users/:id   | PATCH    | Update a user with specific new info  |
 
-list of filter routes:
+List of filter routes:
 
 | Route                    | HTTP           | Description                |
 | ------------------------ |:--------------:| --------------------------:|
@@ -34,3 +34,4 @@ npm install
 npm start
 npm run dev
 ```
+Access the website via http://localhost:3000 or API via http://localhost:3000/api.
