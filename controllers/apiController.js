@@ -6,8 +6,6 @@ const bcrypt = require('bcrypt');
 class Api {
 
   static signUp(req, res){
-    // res.send('signUp page')
-
     db.User.create({
       status: 'user',
       name: req.body.name,
@@ -17,12 +15,12 @@ class Api {
     }).then(newUser => {
       if (newUser) {
         res.status(201).json({
-          message: 'new user created',
+          message: 'New user created',
           newUser: newUser
         })
       } else {
         res.status(400).json({
-          message: "User is not Created"
+          message: "User is not created"
         })
       }
     }).catch(err=>{
@@ -34,8 +32,6 @@ class Api {
   }
 
   static signIn(req, res){
-    // res.send('signIn page')
-    // set token here
     db.User.findOne({
       where: {
         name : req.body.name
@@ -43,17 +39,15 @@ class Api {
     }).then(foundUser => {
       if (!foundUser) {
         res.status(404).json({
-          message: 'user is not found'
+          message: 'User is not found'
         })
       } else {
         const saltRounds = 10;
-        // var hash = bcrypt.hashSync(req.body.password, saltRounds);
         if (!bcrypt.compareSync(req.body.password,foundUser.password)) {
           res.status(401).json({
-            message: 'password is wrong'
+            message: 'Password is wrong'
           })
         } else {
-          // add token
           let params = {
             id: foundUser.id,
             role: foundUser.status
@@ -61,7 +55,7 @@ class Api {
           let token = jwt.sign(params, process.env.SECRET)
           console.log(token);
           res.status(200).json({
-            message: 'login successful',
+            message: 'Login successful',
             token: token,
             user: foundUser.name
           })
@@ -77,12 +71,11 @@ class Api {
   }
 
   static getUsers(req, res){
-    // res.send('getUsers page')
     db.User.findAll({
     }).then(foundUsers=>{
       if (foundUsers) {
         res.status(200).json({
-          message: 'all users get',
+          message: 'All users get',
           foundUsers: foundUsers
         });
       } else {
@@ -98,7 +91,6 @@ class Api {
   }
 
   static getUsersById(req, res){
-    // res.send('getUsersById page')
     db.User.findById(req.params.id).then(foundUser => {
       if (foundUser) {
         res.status(200).send({
@@ -118,7 +110,6 @@ class Api {
   }
 
   static createUser(req, res){
-    // res.send('createUser page')
     db.User.create({
       status: req.body.status,
       name: req.body.name,
@@ -144,7 +135,6 @@ class Api {
   }
 
   static deleteUser(req, res){
-    // res.send('deleteUser page')
     db.User.findById(req.params.id).then(foundUser=>{
       if (foundUser) {
         return foundUser.destroy().then((userData)=>{
@@ -166,7 +156,6 @@ class Api {
   }
 
   static updateUser(req, res){
-    // res.send('updateUser page')
     db.User.findById(req.params.id).then(foundUser=>{
       if (foundUser) {
         foundUser.update({

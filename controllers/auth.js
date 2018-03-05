@@ -4,7 +4,11 @@ const jwt = require('jsonwebtoken');
 class Auth {
 
   static authentication(req, res, next){
-    // check if token exist
+    if (req.headers.token === undefined) {
+      return res.status(401).json({
+        message: 'Token Unavailable. Please Log in.'
+      })
+    }
     try {
       let tokenDecoded = jwt.verify(req.headers.token, process.env.SECRET)
       console.log(tokenDecoded);
@@ -14,14 +18,13 @@ class Auth {
       next()
     } catch (e) {
       res.status(401).json({
-        message: 'Token is invalid'
+        message: 'Token is invalid.'
       })
     }
 
   }
 
   static authorization(req, res, next){
-    // check role or id
     if (req.headers.role === 'admin') {
       next()
     } else if (req.headers.role ==='user') {
