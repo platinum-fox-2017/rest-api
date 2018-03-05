@@ -4,27 +4,35 @@ module.exports = {
     showUser(req, res) {
         User.findAll()
         .then(data => {
-
             res.status(200).json({
                 message: 'Get data from database',
                 data
             })
-
         })
         .catch(err => {
-            console.log(err)
+            res.status(404).json({
+                message: `Request Error`,
+            })
         })
     },
     showSpesificUser(req,res) {
         User.findById(req.params.id)
         .then(data => {
-            res.status(200).json({
-                message: `find by id ${req.params.id}`,
-                data
-            })
+            if (data.length !== null) {
+                res.status(200).json({
+                    message: `find by id ${req.params.id}`,
+                    data
+                })
+            } else {
+                res.status(404).json({
+                    message: `User by Id: ${req.params.id} Not Found`,
+                })
+            }
         })
         .catch(err => {
-            console.log(err)
+            // res.status(404).json({
+            //     message: `User by Id: ${req.params.id} Not Found`,
+            // })
         })
     },
     createUser(req,res) {
