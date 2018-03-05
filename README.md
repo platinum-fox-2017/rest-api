@@ -9,7 +9,7 @@ List of basic routes:
 
 **Route** | **HTTP** | **Descrition**
 ----------|----------|---------------
-<span style = "color:red">/api/hello?name={name}</span>| GET | Print hello, {name} !
+/api/hello?name={name} {color:red}| GET | Print hello, {name} !
 
 List of user routes:
 
