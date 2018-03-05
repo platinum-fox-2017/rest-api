@@ -11,10 +11,8 @@ class Auth {
     }
     try {
       let tokenDecoded = jwt.verify(req.headers.token, process.env.SECRET)
-      console.log(tokenDecoded);
       req.headers.role = tokenDecoded.role;
       req.headers.id   = tokenDecoded.id;
-      console.log(req.headers);
       next()
     } catch (e) {
       res.status(401).json({
