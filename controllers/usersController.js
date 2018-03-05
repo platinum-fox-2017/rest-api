@@ -1,7 +1,10 @@
 const models = require('../models')
-
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
+var jwt = require('jsonwebtoken');
 
 class Users {
+
   static show(req,res) {
     models.User.findAll().then(data_user => {
       res.status(200).json({
@@ -28,9 +31,12 @@ class Users {
   }
 
   static addData(req, res) {
+    var salt = bcrypt.genSaltSync(saltRounds);
+    var hash = bcrypt.hashSync(req.body.password, salt);
     let obj = {
-      name: req.body.name,
-      password: req.body.password
+      username: req.body.username,
+      password: hash,
+      role: req.body.role
     }
     models.User.create(obj).then(data_user => {
       res.status(200).json({
@@ -58,7 +64,8 @@ class Users {
   static editData(req, res) {
     let obj = {
       name: req.body.name,
-      password: req.body.password
+      password: req.body.password,
+      role: req.body.role
     }
     models.User.update(obj, {
       where: {
@@ -71,6 +78,53 @@ class Users {
       })
     })
   }
+
+  static sign_up(req, res) {
+    var salt = bcrypt.genSaltSync(saltRounds);
+    var hash = bcrypt.hashSync(req.body.password, salt);
+    let obj = {
+      username: req.body.username,
+      password: hash,
+      role: 'User'
+    }
+    models.User.create(obj).then(data_user => {
+      res.status(200).json({
+        message: 'create data success',
+        data: data_user
+      })
+    })
+  }
+
+  static sign_in(req, res) {
+    console.log(req.body);
+    models.User.findOne({
+      where: {
+        username: req.body.username
+      }
+    }).then(data => {
+      if (data) {
+        let check = bcrypt.compareSync(req.body.password, data.password)
+        if (check) {
+          const token = jwt.sign({id: data.id, role: data.role}, process.env.SECRET)
+          res.status(201).json({
+            message: 'login success',
+            data: token
+          })
+        }
+        else {
+          res.status(404).json({
+            message: 'password incorrect'
+          })
+        }
+      } else {
+        res.status(404).json({
+          message: 'username is incorrect'
+        })
+      }
+    })
+  }
+
+
 }
 
 
