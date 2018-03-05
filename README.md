@@ -51,4 +51,7 @@ pastikan kita dapa passing token tersebut saat melakukan API call terhadap route
 
 STEP 6 : Deploy to Heroku (optional)
 
-Deploy aplikasi ke heroku agar kita dapat mengakses langsung API-nya dengan mudah dari manapun, sertakan URL-nya di README 
+Deploy aplikasi ke heroku agar kita dapat mengakses langsung API-nya dengan mudah dari manapun, sertakan URL-nya di README
+
+https://agnynureza-rest-api.herokuapp.com/
+
