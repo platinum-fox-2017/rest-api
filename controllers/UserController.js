@@ -1,18 +1,21 @@
-const models = require('../models')
+const models     = require('../models')
+const bcrypt     = require('bcrypt')
+const jwt        = require('jsonwebtoken')
+const saltRounds = 10;
 
 module.exports = {
     getUsers : (req,res) => {
         models.User.findAll()
         .then(users => {
             if(users) {
-                res.status(201).json({
+                res.status(200).json({
                     message : 'get all user data success',
                     users
                 })
             } else {
                 res.status(404).json({
                     message : 'users not found',
-                    users
+                    users : []
                 })
             }
         })
@@ -25,14 +28,14 @@ module.exports = {
         models.User.findById(req.params.id)
         .then(user => {
             if(user) {
-                res.status(201).json({
+                res.status(200).json({
                     message : 'User found !',
                     user
                 })
             } else {
                 res.status(404).json({
                     message : 'User not found !',
-                    user:[]
+                    user:{}
                 })
             }
         })
@@ -42,15 +45,19 @@ module.exports = {
     },
 
     createUser : (req,res) => {
+        let userPassword = bcrypt.hashSync(req.body.password, saltRounds);
         models.User.create({
+            username  : req.body.username,
+            password  : userPassword,
             firstName : req.body.firstName,
             lastName  : req.body.lastName,
             email     : req.body.email,
-            gender    : req.body.gender
+            gender    : req.body.gender,
+            role      : req.body.role
         })
         .then(newUser => {
             if(newUser) {
-                res.status(201).json({
+                res.status(200).json({
                     message : 'Create new user success !',
                     newUser
                 })
@@ -72,7 +79,7 @@ module.exports = {
             if (deletedUser) {
                 deletedUser.destroy()
                 .then(() => {
-                    res.status(201).json({
+                    res.status(200).json({
                         message : 'delete user success !',
                         deletedUser
                     })
@@ -93,17 +100,22 @@ module.exports = {
     },
 
     updateUser : (req,res) => {
+        let userPassword = bcrypt.hashSync(req.body.password, saltRounds);
+
         models.User.findById(req.params.id)
         .then(user => {
             if(user) {
                 user.update({
+                    username  : req.body.username,
+                    password  : userPassword,
                     firstName : req.body.firstName,
                     lastName  : req.body.lastName,
                     email     : req.body.email,
-                    gender    : req.body.gender
+                    gender    : req.body.gender,
+                    role      : req.body.role
                 })
                 .then((updatedUser) => {
-                    res.status(201).json({
+                    res.status(200).json({
                         message : 'update user success !',
                         updatedUser
                     })
