@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "andrewkusuma",
+    "password": "helloworld",
+    "database": "restapidb_development",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "restapidb_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "bnflvebtibdxbl",
+    "password": "c0311250e0a5c53e62014db29ebd96883f4bb0524a79dd17f097d0a1b849552c",
+    "database": "de7iiu8tcu5okb",
+    "host": "ec2-54-225-249-161.compute-1.amazonaws.com",
+    "dialect": "postgres"
+  }
+}
