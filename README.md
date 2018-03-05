@@ -1,7 +1,7 @@
 # rest-api
 REST API with MVC architecture
 
-## REST API
+#### List Router API
 List of sign up / sign in routes:
 
 |    Route    |  HTTP   |                     Description                         |
@@ -11,19 +11,20 @@ List of sign up / sign in routes:
 
 List of user routes:
 
-|           Route        |  HTTP  |             Description               |
-| ---------------------- | ------ | ------------------------------------- |
-| /api/users             | GET    | Get all the users                     |
-| /api/users/:id         | GET    | Get a single users                    |
-| /api/users/            | POST   | Create a users                        |
-| /api/users/:id         | DELETE | Delete a users                        |
-| /api/users/:id         | PUT    | Update a users with new info          |
+|           Route        |  HTTP  |                 Description                   |
+| ---------------------- | ------ | --------------------------------------------- |
+| /api/users             | GET    | Get all the users (admin only)                |
+| /api/users/:id         | GET    | Get a single users (admin and user)           |
+| /api/users/            | POST   | Create a users (admin only)                   |
+| /api/users/:id         | DELETE | Delete a users (admin only)                   |
+| /api/users/:id         | PUT    | Update a users with new info (admin and user) |
 
-## Usage
+#### Usage
 With only npm:
 ```
 npm install
-npm start
+npm run dev
+npm run start
 ```
 
 Access website via `http://localhost:3000` or API via `http://localhost:3000/api` or `https://eksa-restapi.herokuapp.com`
