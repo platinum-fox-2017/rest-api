@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "test_CRUD phase 2",
-    "host": "127.0.0.1",
+    "username": "spnnrzgs",
+    "password": "8z7qjuUdkVMUBRsNHH0FdWfOrSWsD0JF",
+    "database": "spnnrzgs",
+    "host": "baasu.db.elephantsql.com",
     "dialect": "postgres"
   }
 }

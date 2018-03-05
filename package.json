@@ -2,9 +2,13 @@
   "name": "rest-api",
   "version": "1.0.0",
   "description": "REST API with MVC architecture",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=development node app.js",
+    "dev": "nodemon app.js"
+  },
+  "engines":{
+    "node": "8.9.1"
   },
   "repository": {
     "type": "git",

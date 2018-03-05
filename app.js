@@ -8,10 +8,9 @@ app.use(bodyParser.json())
 
 const user = require('./routes/user.js')
 
-
 app.use('/',user)
 
 
-app.listen(3000,()=>{
+app.listen(process.env.PORT||3000,()=>{
   console.log('AYE:3000');
 })
