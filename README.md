@@ -4,7 +4,7 @@ REST API with MVC architecture
 # My App Name
 Demo app with basic REST API
 
-#REST API
+# REST API
 
 List of bacic routes:
 
@@ -27,10 +27,10 @@ List of routes:
 
 **Route** | **HTTP** | **Description**
 --------- | -------- | ---------------
-`/api/users?name="{name}"` | GET | Get {name} match in users
-`/api/users?name="{na}"` | GET | Get {na} like in users
+`/api/users?name="{name}"` | GET | Get `{name}` match in users
+`/api/users?name="{na}"` | GET | Get `{na}` like in users
 
-#Usage
+# Usage
 
 With only npm:
 
@@ -40,4 +40,4 @@ npm start
 npm run dev
 ```
 
-Access the website via `http://localhost:300` or API via `http://localhost:3000/api`
+Access the website via `http://localhost:300` or API via `http://localhost:3000/api`.
