@@ -14,7 +14,7 @@ function auth(req, res, next){
             next()
           } else {
             res.status(404).json({
-              message: 'sorry  cant access this feature from your privacy'
+              message: 'sorry  cant access this feature from your privacy '
             })
           }
         }
