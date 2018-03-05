@@ -1,8 +1,8 @@
-# rest-api
+# My App Name
 REST API with MVC architecture
 
 # REST API
-######list of basic routers:
+list of basic routers:
 
 | Route                  | HTTP           | Description          |
 | ---------------------- |:--------------:| --------------------:|
@@ -26,7 +26,7 @@ list of filter routes:
 | /api/users?name="{name}" | GET            | get {name} match in users  |
 | /api/users?name="{na}"   | GET             | get {na} like in users    |
 
-#Usage
+# Usage
 
 With only npm:
 ```
