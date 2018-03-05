@@ -27,7 +27,6 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       validate: {
-        notNull: false,
         notEmpty: true,
         isLong(value){
           if (value.length < 6) {
@@ -39,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     hooks:{
       beforeCreate: (instance, options)=>{
+        console.log(instance);
         const saltRounds = 10;
         let hash = bcrypt.hashSync(instance.password, saltRounds);
         instance.password = hash
