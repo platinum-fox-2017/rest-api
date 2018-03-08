@@ -47,7 +47,9 @@ class UserController {
     let obj = {
       username: req.body.username,
       password: bcrypt.hashSync(req.body.password,salt),
-      role:'user'
+      role:'user',
+      createdAt:new Date(),
+      updatedAt:new Date()
     }
     User.create(obj)
     .then(()=>{
@@ -58,7 +60,8 @@ class UserController {
     }).catch(err=>{
       res.status(404).json({
         message:'failed at creating User data',
-        data:obj
+        data:obj,
+        err
       })
     })
   }
@@ -79,7 +82,8 @@ class UserController {
     }).catch(err=>{
       res.status(404).json({
         message:'failed at creating Admin data',
-        data:obj
+        data:obj,
+        err
       })
     })
   }
@@ -133,7 +137,7 @@ class UserController {
   }).then(user => {
       let condition = bcrypt.compareSync(req.body.password, user.password)
       if(condition === true){
-        let token = jwt.sign({user},'secretkey')
+        let token = jwt.sign({user},'secret key')
         res.status(200).json({
           message:'login berhasil',
           data:user,

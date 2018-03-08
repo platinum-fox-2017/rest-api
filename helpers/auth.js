@@ -6,7 +6,7 @@ function authAdmin(req, res, next){
     let token =  req.headers.token
     if (token) {
       try {
-        var decoded = jwt.verify(token,'secretkey');
+        var decoded = jwt.verify(token,'secret key');
         console.log(decoded);
         if (decoded) {
           if (decoded.user.role === 'admin') {
@@ -33,7 +33,7 @@ function authRegisteredUser(req,res,next){
   let token =  req.headers.token
     if (token) {
       try {
-        var decoded = jwt.verify(token,'secretkey');
+        var decoded = jwt.verify(token,'secret key');
         console.log(decoded);
         if (decoded) {
           if ((decoded.user.role === 'user'&& decoded.id === Number(req.params.id))||decoded.role === 'admin') {
