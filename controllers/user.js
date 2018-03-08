@@ -49,7 +49,6 @@ class UserController {
       password: bcrypt.hashSync(req.body.password,salt),
       role:'user'
     }
-      console.log(obj);
     User.create(obj)
     .then(()=>{
       res.status(200).json({
